@@ -1,0 +1,17 @@
+package com.nadila.accounting_app_demo.repository;
+
+import com.nadila.accounting_app_demo.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.lang.ScopedValue;
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    Optional<User> findByUsername(String username);
+
+    boolean existsByUsername(String username);
+}
+
