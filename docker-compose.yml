@@ -1,0 +1,30 @@
+
+
+services:
+  postgres:
+    image: postgres:16
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: account
+    networks:
+      - backend-network
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - backend-network
+
+
+volumes:
+  postgres-data:
+
+networks:
+  backend-network:
